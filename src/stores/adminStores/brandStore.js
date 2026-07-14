@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import api from "../../api/axiosClient";
 
 const useBrandStore = create((set, get) => ({
   brands: [],
@@ -11,8 +11,8 @@ const useBrandStore = create((set, get) => ({
     try {
       console.log("Intentando obtener las Marcas");
 
-      const response = await axios.get(
-        "https://witralen-back.onrender.com/brand/showBrands"
+      const response = await api.get(
+        "/brand/showBrands"
       );
 
       set({ brands: response.data, error: null });
@@ -38,8 +38,8 @@ const useBrandStore = create((set, get) => ({
   postBrand: async (name, logo) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post(
-        "https://witralen-back.onrender.com/brand/newBrand",
+      const response = await api.post(
+        "/brand/newBrand",
         { name, logo }
       );
 
@@ -71,7 +71,7 @@ const useBrandStore = create((set, get) => ({
     try {
       console.log("Intentando eliminar esta Marca");
 
-      await axios.delete(`https://witralen-back.onrender.com/brand/deleteBrand/${id}`);
+      await api.delete(`/brand/deleteBrand/${id}`);
 
       set((state) => ({
         brands: state.brands.filter((brand) => brand.id !== id),
@@ -99,8 +99,8 @@ const useBrandStore = create((set, get) => ({
   updateBrand: async (id, name, logo) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.patch(
-        `https://witralen-back.onrender.com/brand/updateBrand/${id}`,
+      const response = await api.patch(
+        `/brand/updateBrand/${id}`,
         { name, logo }
       );
 

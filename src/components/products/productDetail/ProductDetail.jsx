@@ -6,9 +6,8 @@ import styles from './ProductDetail.module.css';
 
 const ProductDetail = () => {
     const location = useLocation();
-    const { product } = location.state || {}; // Retrieve product data
+    const { product } = location.state || {}; 
 
-    // Estado para la imagen principal seleccionada
     const [selectedImage, setSelectedImage] = useState(
         Array.isArray(product?.images) ? product.images[0] : product?.image || 'https://via.placeholder.com/300'
     );
@@ -31,9 +30,7 @@ const ProductDetail = () => {
                         />
                         <div className={styles.brandContainer}>
                             <span className={styles.brandLabel}>Marca</span>
-                            {console.log(product)}
-                            <span className={styles.brandName}>{product.brandId
-                                || 'N/A'}</span>
+                            <span className={styles.brandName}>{product.brand?.name || 'N/A'}</span>
                         </div>
                     </div>
                     <div className={styles.rightSection}>

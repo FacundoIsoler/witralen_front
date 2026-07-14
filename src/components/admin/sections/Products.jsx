@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaPen, FaTrashAlt, FaTimes } from "react-icons/fa";
 import useProductStore from "../../../stores/adminStores/productStore";
 import useBrandStore from "../../../stores/adminStores/brandStore";
 import { Cloudinary } from "@cloudinary/url-gen";
@@ -133,13 +134,18 @@ function Products() {
       <div className={styles.productList}>
         {products.map((product) => (
           <div key={product.id} className={styles.productItem}>
-            <span>{product.name}</span>
-            {product.images?.map((img, i) => (
-              <img key={i} src={img} alt={product.name} style={{ width: "50px", height: "50px", marginRight: "5px" }} />
-            ))}
+            <div className={styles.itemImages}>
+              {product.images?.slice(0, 2).map((img, i) => (
+                <img key={i} src={img} alt={product.name} className={styles.itemThumb} />
+              ))}
+            </div>
+            <div className={styles.itemInfo}>
+              <span className={styles.itemName}>{product.name}</span>
+              <span className={styles.itemCategory}>{product.category}</span>
+            </div>
             <div className={styles.actions}>
-              <button onClick={() => handleEdit(product.id)} className={styles.editBtn}>✏</button>
-              <button onClick={() => handleDelete(product.id)} className={styles.deleteBtn}>🗑</button>
+              <button onClick={() => handleEdit(product.id)} className={styles.editBtn} aria-label="Editar producto"><FaPen /></button>
+              <button onClick={() => handleDelete(product.id)} className={styles.deleteBtn} aria-label="Eliminar producto"><FaTrashAlt /></button>
             </div>
           </div>
         ))}
@@ -150,7 +156,7 @@ function Products() {
       {isModalOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
-            <button onClick={handleCloseModal} className={styles.closeBtn}>✖</button>
+            <button onClick={handleCloseModal} className={styles.closeBtn}><FaTimes /></button>
             <h2>{isEditing ? "Editar Producto" : "Ingresar Producto"}</h2>
 
             <label>Nombre del Producto</label>

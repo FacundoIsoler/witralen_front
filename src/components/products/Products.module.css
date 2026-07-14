@@ -28,3 +28,17 @@
     gap: 20px;
 
 }
+
+@media (max-width: 768px) {
+    .mainScreen {
+        flex-direction: column;
+    }
+
+    .content {
+        margin: 0 0.5rem 1rem;
+    }
+
+    .layout {
+        padding: 12px;
+    }
+}

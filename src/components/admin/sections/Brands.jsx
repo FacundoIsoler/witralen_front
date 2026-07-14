@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaPen, FaTrashAlt, FaTimes } from "react-icons/fa";
 import useBrandStore from "../../../stores/adminStores/brandStore";
 import styles from "./Brands.module.css";
 
@@ -116,19 +117,21 @@ function Brands() {
       <div className={styles.brandList}>
         {brands.map((brand) => (
           <div key={brand.id} className={styles.brandItem}>
-            <span>{brand.name}</span>
+            <div className={styles.itemInfo}>
+              <span className={styles.itemName}>{brand.name}</span>
+            </div>
             <div className={styles.actions}>
               <button
                 onClick={() => handleEdit(brand.id)}
                 className={styles.editBtn}
               >
-                ✏️
+                <FaPen />
               </button>
               <button
                 onClick={() => handleDelete(brand.id)}
                 className={styles.deleteBtn}
               >
-                🗑️
+                <FaTrashAlt />
               </button>
             </div>
           </div>
@@ -140,7 +143,7 @@ function Brands() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <button onClick={handleCloseModal} className={styles.closeBtn}>
-              ✖
+              <FaTimes />
             </button>
             <h2>{isEditing ? "Editar Marca" : "Ingresar Marca"}</h2>
             <label>Nombre de la Marca</label>
@@ -151,7 +154,7 @@ function Brands() {
               className={styles.input}
             />
 
-            <label>Ingresar Logo</label>
+            {/* <label>Ingresar Logo</label>
             <div className={styles.uploadWrapper}>
               <input
                 type="file"
@@ -185,7 +188,7 @@ function Brands() {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
             <button onClick={handleSaveBrand} className={styles.saveBtn}>
             {isEditing ? "Actualizar" : "Aceptar"}
             </button>

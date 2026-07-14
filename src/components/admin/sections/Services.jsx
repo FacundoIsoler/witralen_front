@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaPen, FaTrashAlt, FaTimes } from "react-icons/fa";
 import useServiceStore from "../../../stores/adminStores/serviceStore";
 import useBrandStore from "../../../stores/adminStores/brandStore";
 import { Cloudinary } from "@cloudinary/url-gen";
@@ -171,28 +172,29 @@ function Services() {
       <div className={styles.serviceList}>
         {services.map((service) => (
           <div key={service.id} className={styles.serviceItem}>
-            <span>{service.name}</span>
-            {service.images &&
-              service.images.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  src={imageUrl}
-                  alt={service.name}
-                  style={{ width: "50px", height: "50px", marginRight: "5px" }}
-                />
+            <div className={styles.itemImages}>
+              {service.images?.slice(0, 2).map((imageUrl, index) => (
+                <img key={index} src={imageUrl} alt={service.name} className={styles.itemThumb} />
               ))}
+            </div>
+            <div className={styles.itemInfo}>
+              <span className={styles.itemName}>{service.name}</span>
+              <span className={styles.itemCategory}>{service.category}</span>
+            </div>
             <div className={styles.actions}>
               <button
                 onClick={() => handleEdit(service.id)}
                 className={styles.editBtn}
+                aria-label="Editar servicio"
               >
-                ✏
+                <FaPen />
               </button>
               <button
                 onClick={() => handleDelete(service.id)}
                 className={styles.deleteBtn}
+                aria-label="Eliminar servicio"
               >
-                🗑
+                <FaTrashAlt />
               </button>
             </div>
           </div>
@@ -204,7 +206,7 @@ function Services() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <button onClick={handleCloseModal} className={styles.closeBtn}>
-              ✖
+              <FaTimes />
             </button>
             <h2>{isEditing ? "Editar Servicio" : "Ingresar Servicio"}</h2>
             <label>Nombre del Servicio</label>

@@ -48,15 +48,17 @@
     cursor: pointer;
 }
 
-.navItemCelular a {
+.navItemCelular {
     text-decoration: none;
     color: black;
     font-weight: bold;
     display: inline-block;
     font-size: 20px;
+    position: relative;
+    cursor: pointer;
 }
 
-.navItemCelular a::after {
+.navItemCelular::after {
     content: '';
     display: block;
     width: 0;
@@ -68,9 +70,9 @@
     left: 0;
 }
 
-.navItemCelular a:hover::after,
-.navItemCelular a:focus::after,
-.navItemCelular a:active::after {
+.navItemCelular:hover::after,
+.navItemCelular:focus::after,
+.navItemCelular:active::after {
     width: 100%;
 }
 
@@ -128,9 +130,6 @@
     .mobileNavLinks .navItemCelular {
         margin: 1rem 0;
         text-align: center;
-    }
-
-    .mobileNavLinks .navItemCelular a {
         color: white;
         font-size: 1.2rem;
     }

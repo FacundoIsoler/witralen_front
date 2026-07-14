@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import api from "../api/axiosClient";
 
 const useRandomProductStore = create((set) => ({
     randomProducts: [],
@@ -10,7 +10,7 @@ const useRandomProductStore = create((set) => ({
         set({ loading: true, error: null });
         try {
             // Obtener todos los productos
-            const response = await axios.post("https://witralen-back.onrender.com/product/showProducts");
+            const response = await api.post("/product/showProducts");
             const allProducts = response.data.products || [];
 
             // Seleccionar hasta 10 productos al azar

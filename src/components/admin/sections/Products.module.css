@@ -1,80 +1,131 @@
 .container {
-    background-color: #EC671CCC;
-    border-radius: 8px;
-    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
     width: 100%;
-    height: 100%; /* ← NUEVO: para que crezca dentro del grid */
-    overflow-y: auto; /* ← NUEVO: permite scroll interno */
+    height: 100%;
     box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
 }
-
 
 .header {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #EDEDED;
 }
 
 .title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 20px;
+    color: #222;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
 }
 
 .productList {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: calc(100vh - 180px);
-        overflow-y: auto;
-    padding-right: 10px; /* espacio para el scrollbar */
+    gap: 0.75rem;
+    overflow-y: auto;
+    padding-right: 6px;
 }
 
 .scrollLoader {
     padding: 20px;
     text-align: center;
-    color: #555;
+    color: #999;
     font-style: italic;
-  }
-  
-
+}
 
 .productItem {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: white;
-    border-radius: 8px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+    background-color: #FAFAFA;
+    border: 1px solid #EEEEEE;
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.productItem span {
-    font-size: 16px;
+.productItem:hover {
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.itemImages {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.itemThumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    background-color: #f0f0f0;
+    border: 1px solid #EAEAEA;
+}
+
+.itemInfo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.itemName {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.itemCategory {
+    font-size: 12.5px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
 }
 
 .actions {
     display: flex;
-    gap: 10px;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
 .editBtn,
 .deleteBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
     background-color: transparent;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
+    color: #777;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .editBtn:hover {
+    background-color: #E8F1FC;
     color: #2c7fdb;
 }
 
 .deleteBtn:hover {
+    background-color: #FDECEC;
     color: #e63946;
 }
 
@@ -87,16 +138,19 @@
 }
 
 .addBtn {
-    background-color: white;
-    color: #ff6f00;
+    background-color: #ED772F;
+    color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 0.6rem 1.1rem;
     border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .addBtn:hover {
-    background-color: #f2f2f2;
+    background-color: #d9691f;
 }
 
 /* Modal styles */
@@ -114,27 +168,43 @@
 }
 
 .modal {
-    background-color: #ED772F;
+    background-color: #ffffff;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 12px;
     width: 100%;
-    max-width: 500px; 
+    max-width: 500px;
     text-align: left;
-    color: white;
+    color: #333;
     position: relative;
     box-sizing: border-box;
     max-height: 90vh;
     overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+    color: #222;
+    border-bottom: 3px solid #ED772F;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.modal label {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
 }
 
 .input, .select, .textarea, .uploadBtn {
     width: 100%;
     padding: 10px;
-    margin: 0.5rem 0;
-    border-radius: 5px;
-    border: none;
+    margin: 0.35rem 0;
+    border-radius: 8px;
+    border: 1px solid #DDD;
     font-size: 16px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #FAFAFA;
     color: #333;
     box-sizing: border-box;
 }
@@ -152,10 +222,10 @@
 .uploadBtn {
     display: inline-block;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: #FAFAFA;
     color: #333;
     box-sizing: border-box;
 }
@@ -163,32 +233,49 @@
 .textarea {
     height: 100px;
     box-sizing: border-box;
-    resize: vertical; 
-    max-width: 100%; 
+    resize: vertical;
+    max-width: 100%;
 }
 
 .saveBtn {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #ED772F;
+    background-color: #ED772F;
+    color: white;
     border: none;
     padding: 10px;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     margin-top: 1rem;
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
     box-sizing: border-box;
+    transition: background-color 0.2s ease;
+}
+
+.saveBtn:hover {
+    background-color: #d9691f;
 }
 
 .closeBtn {
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #F5F5F5;
     border: none;
-    color: white;
+    border-radius: 50%;
+    color: #666;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
+    top: 14px;
+    right: 14px;
+    font-size: 16px;
     cursor: pointer;
+}
+
+.closeBtn:hover {
+    background: #EEEEEE;
+    color: #222;
 }
 
 .preview {
@@ -206,17 +293,18 @@
 }
 
 .previewItem img {
-    border-radius: 5px;
+    border-radius: 8px;
     height: 5rem;
     width: 5rem;
     object-fit: contain;
+    border: 1px solid #EEE;
 }
 
 .removeImageBtn {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    background-color: red;
+    top: -6px;
+    right: -6px;
+    background-color: #e63946;
     color: white;
     border: none;
     border-radius: 50%;
@@ -226,20 +314,20 @@
 }
 
 .cloudinary-dropzone {
-    border: 2px dashed #999;
+    border: 2px dashed #DDD;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    color: #666;
+    background-color: #FAFAFA;
+    color: #888;
     padding: 20px;
     text-align: center;
     font-size: 16px;
     transition: border-color 0.3s, background-color 0.3s;
     margin: 1rem 0;
   }
-  
+
   .cloudinary-dropzone:hover {
     border-color: #ED772F;
-    background-color: #f1f1f1;
+    background-color: #FFF6EF;
     cursor: pointer;
   }
 
@@ -248,34 +336,35 @@
     gap: 10px;
     margin-bottom: 10px;
   }
-  
+
   .uploadModeToggle button {
     padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
+    border-radius: 8px;
+    border: 1px solid #DDD;
     cursor: pointer;
-    background-color: white;
-    color: #ED772F;
-    font-weight: bold;
+    background-color: #FAFAFA;
+    color: #666;
+    font-weight: 600;
     transition: background-color 0.2s, color 0.2s;
   }
-  
+
   .uploadModeToggle button:hover {
-    background-color: #ffe5d1;
+    background-color: #FFF6EF;
   }
-  
+
   .uploadModeToggle .activeToggle {
     background-color: #ED772F;
+    border-color: #ED772F;
     color: white;
   }
-  
-  
+
+
 
 /* Ajustes responsivos */
 @media (max-width: 768px) {
     .container {
         width: 100%;
-        padding: 15px;
+        padding: 1rem;
     }
 
     .modal {
@@ -283,20 +372,20 @@
     }
 
     .title {
-        font-size: 18px;
+        font-size: 1.15rem;
     }
 
-    .productItem span {
+    .itemName {
         font-size: 14px;
     }
 
     .saveBtn {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .addBtn {
-        font-size: 14px;
-        padding: 6px 10px;
+        font-size: 13px;
+        padding: 0.5rem 0.85rem;
     }
 }
 
@@ -306,14 +395,15 @@
     }
 
     .title {
-        font-size: 16px;
+        font-size: 1.05rem;
     }
 
-    .addBtn {
-        padding: 5px 8px;
+    .itemThumb {
+        width: 44px;
+        height: 44px;
     }
 
-    .productItem span {
+    .itemName {
         font-size: 13px;
     }
 

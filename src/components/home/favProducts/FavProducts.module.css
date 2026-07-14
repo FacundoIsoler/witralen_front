@@ -177,8 +177,14 @@
     .carouselArrow {
         width: 35px;
         height: 35px;
-        left: -30px;
-        right: -30px;
+    }
+
+    .carouselArrowLeft {
+        left: 5px;
+    }
+
+    .carouselArrowRight {
+        right: 5px;
     }
 }
 
@@ -205,7 +211,13 @@
     .carouselArrow {
         width: 30px;
         height: 30px;
-        left: -20px;
-        right: -20px;
+    }
+
+    .carouselArrowLeft {
+        left: 2px;
+    }
+
+    .carouselArrowRight {
+        right: 2px;
     }
 }

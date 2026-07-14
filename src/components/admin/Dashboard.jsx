@@ -1,25 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FaBoxOpen, FaTags, FaTools } from 'react-icons/fa'
 import styles from './Dashboard.module.css'
+import logo from '../../assets/logo/logoBlanco.png'
 
 //Components
 import Products from './sections/Products'
-// import Services from './sections/Services'
+import Services from './sections/Services'
 import Brands from './sections/Brands'
 
+const SECTIONS = [
+    { id: 'products', label: 'Productos', icon: FaBoxOpen, Component: Products },
+    { id: 'brands', label: 'Marcas', icon: FaTags, Component: Brands },
+    { id: 'services', label: 'Servicios', icon: FaTools, Component: Services },
+]
+
 function Dashboard() {
+    const [activeSection, setActiveSection] = useState('products')
+    const navigate = useNavigate()
+    const ActiveComponent = SECTIONS.find((s) => s.id === activeSection).Component
+
     return (
         <div className={styles.container}>
-            <div className={styles.wrapper}>
-                <div className={styles.one}>
-                    <Products />
-                </div>
-                {/* <div className={styles.two}>
-                    <Services />
-                </div> */}
-                <div className={styles.three}>
-                    <Brands />
-                </div>
-            </div>
+            <aside className={styles.sidebar}>
+                <button
+                    type="button"
+                    className={styles.sidebarHeader}
+                    onClick={() => navigate('/')}
+                    aria-label="Ir al sitio"
+                >
+                    <img src={logo} alt="Witralen" className={styles.sidebarLogo} />
+                    <span className={styles.sidebarTitle}>Panel de administración</span>
+                </button>
+                <nav className={styles.nav}>
+                    {SECTIONS.map(({ id, label, icon: Icon }) => (
+                        <button
+                            key={id}
+                            className={`${styles.navItem} ${activeSection === id ? styles.navItemActive : ''}`}
+                            onClick={() => setActiveSection(id)}
+                        >
+                            <Icon className={styles.navIcon} />
+                            {label}
+                        </button>
+                    ))}
+                </nav>
+            </aside>
+            <main className={styles.content}>
+                <ActiveComponent />
+            </main>
         </div>
     )
 }

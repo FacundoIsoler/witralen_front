@@ -14,7 +14,7 @@
     text-align: center;
     border-radius: 10px;
     padding: 1rem;
-    height: 350px; /* Altura uniforme */
+    min-height: 350px; /* Altura uniforme */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,6 +26,11 @@
 .productCard:hover {
     transform: translateY(-5px);
     cursor: pointer;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
 }
 
 /* Overlay */
@@ -66,9 +71,33 @@
 }
 
 .productName {
-    font-size: 28px;
+    font-size: 20px;
     color: black;
     margin: 0;
     flex-grow: 0;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .productCard {
+        min-height: 260px;
+        padding: 0.75rem;
+    }
+
+    .productCard img {
+        height: 120px;
+    }
+
+    .productName {
+        font-size: 16px;
+    }
 }
 

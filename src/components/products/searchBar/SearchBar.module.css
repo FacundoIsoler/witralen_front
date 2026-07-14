@@ -6,6 +6,13 @@
     max-width: 80%;
 }
 
+@media (max-width: 480px) {
+    .searchBar {
+        max-width: 100%;
+        padding: 0.5rem 0;
+    }
+}
+
 .filter {
     padding: 0.5rem;
     border: 1px solid #FF6F00;

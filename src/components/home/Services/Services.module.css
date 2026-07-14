@@ -19,7 +19,9 @@
   
   .tittleWidth {
     width: 100%;
-    height: 120px; /* ajustá según tamaño del título */
+    min-height: 120px;
+    padding: 20px;
+    box-sizing: border-box;
     background-color: #E05A00;
     display: flex;
     justify-content: center;
@@ -45,7 +47,8 @@
     flex-direction: column;
     width: 70%;
     max-width: 90vw;
-    margin: 5rem;
+    margin: 5rem auto;
+    box-sizing: border-box;
 }
 
 /* Elemento de servicio */
@@ -129,4 +132,48 @@
     margin: 0;
     margin-right: 3rem;
 
+}
+
+@media (max-width: 900px) {
+    .title h3 {
+        font-size: 40px;
+    }
+
+    .services {
+        width: 100%;
+        max-width: 100%;
+        margin: 3rem auto;
+        padding: 0 1.5rem;
+    }
+
+    .serviceItem,
+    .alternateLeft,
+    .alternateRight {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image {
+        width: 60vw;
+        max-width: 220px;
+        margin-bottom: 1.5rem;
+    }
+
+    .textContainer1,
+    .textContainer2,
+    .textContainer3 {
+        text-align: center;
+    }
+
+    .textContainer2Paragraph,
+    .textContainerParagraph {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .title h3 {
+        font-size: 28px;
+    }
 }

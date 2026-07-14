@@ -91,3 +91,18 @@
     background-color: #ff6f00 !important;
     color: white !important;
 }
+
+@media (max-width: 768px) {
+    .heading {
+        font-size: 48px !important;
+    }
+
+    .embudoText p {
+        font-size: 16px !important;
+    }
+
+    .textSection {
+        max-width: 90%;
+        padding: 0 1rem;
+    }
+}

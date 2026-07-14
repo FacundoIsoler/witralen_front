@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    width: 100%;
     background-color: #2D2F35;
 }
 
@@ -16,6 +17,7 @@
 
 .iframe {
     height: 100%;
+    width: 100%;
     max-width: 70%;
     max-height: 70%;
     box-sizing: border-box;
@@ -26,7 +28,7 @@
 
 .contactContainer {
     position: relative;
-    width: 100vw;
+    width: 100%;
     text-align: start;
     min-height: 50vh;
     display: flex;
@@ -41,6 +43,8 @@
     flex-direction: column;
     text-align: start;
     justify-content: start;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .information,
@@ -94,4 +98,31 @@
 .schedule p {
     font-size: 16px;
     font-weight: bold;
+}
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .mapContainer {
+        min-width: 100%;
+        height: 50vh;
+    }
+
+    .information h3,
+    .schedule h3 {
+        font-size: 40px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .information h3,
+    .schedule h3 {
+        font-size: 32px !important;
+    }
+
+    .infoSection {
+        padding: 1.5rem;
+    }
 }

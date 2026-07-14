@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import api from "../api/axiosClient";
 
 const useAuthStore = create((set, get) => ({
     email: "",
@@ -26,8 +26,8 @@ const useAuthStore = create((set, get) => ({
             const { email, password } = get();
             console.log("Intentando login con:", { email, password });
 
-            const response = await axios.post(
-                "https://witralen-back.onrender.com/user/authUser",
+            const response = await api.post(
+                "/user/authUser",
 
                 {
                     email,

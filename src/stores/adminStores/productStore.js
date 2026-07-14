@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import api from "../../api/axiosClient";
 
 const useProductStore = create((set, get) => ({
   products: [],
@@ -12,7 +12,7 @@ const useProductStore = create((set, get) => ({
 
   getProducts: async (page = 1, limit = 10) => {
     try {
-      const res = await axios.post(`https://witralen-back.onrender.com/product/showProducts?page=${page}&limit=${limit}`);
+      const res = await api.post(`/product/showProducts?page=${page}&limit=${limit}`);
       const data = res.data;
   
       set((state) => ({
@@ -29,8 +29,8 @@ const useProductStore = create((set, get) => ({
   productList: async (filters = {}, page = 1, limit = 10) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post(
-        `https://witralen-back.onrender.com/product/showProducts?page=${page}&limit=${limit}`,
+      const response = await api.post(
+        `/product/showProducts?page=${page}&limit=${limit}`,
         filters
       );
 
@@ -82,7 +82,7 @@ const useProductStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = 
-      await axios.post("https://witralen-back.onrender.com/product/newProduct", {
+      await api.post("/product/newProduct", {
         name,
         images: Array.isArray(images) ? images : [],
         category,
@@ -118,8 +118,8 @@ const useProductStore = create((set, get) => ({
   updateProduct: async (id, name, images, category, description, brandId) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.patch(
-        `https://witralen-back.onrender.com/product/updateProduct/${id}`,
+      const response = await api.patch(
+        `/product/updateProduct/${id}`,
         { name, images, category, description, brandId }
       );
 
@@ -155,7 +155,7 @@ const useProductStore = create((set, get) => ({
     try {
       console.log("Intentando eliminar este Producto");
 
-      await axios.delete(`https://witralen-back.onrender.com/product/deleteProduct/${id}`);
+      await api.delete(`/product/deleteProduct/${id}`);
 
       set((state) => ({
         products: state.products.filter((product) => product.id !== id),

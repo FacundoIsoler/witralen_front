@@ -8,7 +8,7 @@ import './index.css';
 
 function Root() {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/';
+  const hideNavbar = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/' || location.pathname === '/admin';
 
   return (
     <>
