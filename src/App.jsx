@@ -4,6 +4,7 @@ import Login from "./components/login/Login.jsx";
 import Dashboard from "./components/admin/Dashboard.jsx";
 import Products from "./components/products/Products.jsx";
 import ProductDetail from "./components/products/productDetail/ProductDetail.jsx";
+import ProtectedRoute from "./components/common/ProtectedRoute.jsx";
 import './app.css';
 
 function App() {
@@ -14,7 +15,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-        <Route path="/admin" element={<Dashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

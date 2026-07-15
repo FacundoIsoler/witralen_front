@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaBoxOpen, FaTags, FaTools } from 'react-icons/fa'
+import { FaBoxOpen, FaTags, FaTools, FaSignOutAlt } from 'react-icons/fa'
 import styles from './Dashboard.module.css'
 import logo from '../../assets/logo/logoBlanco.png'
+import useAuthStore from '../../stores/authStore'
 
 //Components
 import Products from './sections/Products'
@@ -18,7 +19,13 @@ const SECTIONS = [
 function Dashboard() {
     const [activeSection, setActiveSection] = useState('products')
     const navigate = useNavigate()
+    const logout = useAuthStore((state) => state.logout)
     const ActiveComponent = SECTIONS.find((s) => s.id === activeSection).Component
+
+    const handleLogout = () => {
+        logout()
+        navigate('/login')
+    }
 
     return (
         <div className={styles.container}>
@@ -44,6 +51,10 @@ function Dashboard() {
                         </button>
                     ))}
                 </nav>
+                <button type="button" className={styles.logoutBtn} onClick={handleLogout}>
+                    <FaSignOutAlt className={styles.navIcon} />
+                    Cerrar sesión
+                </button>
             </aside>
             <main className={styles.content}>
                 <ActiveComponent />

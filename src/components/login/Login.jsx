@@ -11,13 +11,12 @@ const MySwal = withReactContent(Swal);
 
 function Login() {
     const {
-        email, 
-        setEmail, 
-        password, 
-        setPassword, 
-        login, 
-        loading, 
-        error 
+        email,
+        setEmail,
+        password,
+        setPassword,
+        login,
+        loading,
     } = useAuthStore();
     const [passwordVisible, setPasswordVisible] = useState(false);
     const navigate = useNavigate();
@@ -30,22 +29,14 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            await login();
-            if (!error) {
-                navigate('/admin');
-            } else {
-                MySwal.fire({
-                    icon: "error",
-                    title: "Error",
-                    text: "Usuario o contraseña incorrectos",
-                });
-            }
-        } catch (error) {
+        const success = await login();
+        if (success) {
+            navigate('/admin');
+        } else {
             MySwal.fire({
                 icon: "error",
                 title: "Error",
-                text: "Hubo un problema al iniciar sesión. Por favor, inténtalo de nuevo.",
+                text: "Usuario o contraseña incorrectos",
             });
         }
     };

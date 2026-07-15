@@ -11,8 +11,9 @@ const useAuthStore = create((set, get) => ({
     loading: false,
     error: null,
 
+    user: JSON.parse(localStorage.getItem("authUser") || "null"),
+
     clearForm: () => {
-        console.log("clearForm ejecutado desde el authStore");
         set({
             password: "",
             email: "",
@@ -24,35 +25,36 @@ const useAuthStore = create((set, get) => ({
         set({ loading: true, error: null });
         try {
             const { email, password } = get();
-            console.log("Intentando login con:", { email, password });
 
             const response = await api.post(
                 "/user/authUser",
-
-                {
-                    email,
-                    password,
-                }
+                { email, password }
             );
 
-            console.log("Login exitoso:", response.data);
-            set({ error: null });
+            const { accessToken, user } = response.data.res;
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("authUser", JSON.stringify(user));
+
+            set({ error: null, user });
+            return true;
         } catch (error) {
             if (error.response) {
-                console.error("Error en el login:", error.response.data);
                 set({ error: error.response.data.error || "Error en el login" });
             } else if (error.request) {
-                console.error(
-                    "Error en el login: No se recibió respuesta del servidor"
-                );
                 set({ error: "No se recibió respuesta del servidor" });
             } else {
-                console.error("Error en el login:", error.message);
                 set({ error: error.message });
             }
+            return false;
         } finally {
             set({ loading: false });
         }
+    },
+
+    logout: () => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("authUser");
+        set({ user: null });
     },
 }));
 
